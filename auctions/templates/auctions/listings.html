@@ -1,0 +1,40 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <h2>Create listing</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+    {% include './messages.html' %}
+    <form action="{% url 'add_listing' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label>Title:</label>
+            <input class="form-control" autofocus type="text" name="listing_title" placeholder="Enter a listing title" required>
+        </div>
+        <div class="form-group">
+            <label>Description:</label>
+            <textarea class="form-control" autofocus name="description" placeholder="Enter a description to the listing" required></textarea>
+        </div>
+        <div class="form-group">
+            <label>Starting bid:</label>
+            <input class="form-control" autofocus type="number" name="starting_bid" placeholder="Enter a starting bid" required>
+        </div>
+        <div class="form-group">
+            <label>Image URL:</label>
+            <input class="form-control" autofocus type="text" name="url_image" placeholder="Enter the URL of a image">
+        </div>
+        <div class="form-group">
+            <label>Category:</label>
+            <select name="categorie">
+                {% for categorie in categories %}
+                    <option value="{{ categorie.name_cat }}">{{ categorie }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input class="btn btn-primary" type="submit" value="Save">
+    </form>
+
+{% endblock %}
