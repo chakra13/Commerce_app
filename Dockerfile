@@ -6,7 +6,7 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 
 # install system dependencies
-RUN apt-get update
+#RUN apt-get update
 
 # install dependencies
 RUN pip install --upgrade pip
